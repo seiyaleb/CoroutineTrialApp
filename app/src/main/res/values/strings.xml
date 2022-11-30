@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">最大風速の予測</string>
+    <string name="dialog_msg">東京における1週間の風速情報（地上10m）を閲覧できるアプリです。</string>
+    <string name="dialog_close">閉じる</string>
+</resources>
