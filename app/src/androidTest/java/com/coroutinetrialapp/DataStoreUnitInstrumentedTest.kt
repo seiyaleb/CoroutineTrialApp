@@ -42,7 +42,7 @@ class DataStoreUnitInstrumentedTest {
     @Before
     fun setup() {
         //データを毎回新規にするためにファイル全削除
-        InstrumentationRegistry.getInstrumentation().targetContext.run {
+        context.run {
             File(filesDir, "datastore").deleteRecursively()
         }
         Dispatchers.setMain(dispatcher)
