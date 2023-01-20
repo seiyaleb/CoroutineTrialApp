@@ -10,23 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.coroutinetrialapp.R
 import com.coroutinetrialapp.datastore.LaunchDataStore
-import com.coroutinetrialapp.datastore.dataStore
-import com.coroutinetrialapp.model.MainRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var launchDataStore:LaunchDataStore
+    @Inject lateinit var launchDataStore:LaunchDataStore
     private lateinit var tvWindSpeed:TextView
-    private val viewModel: MainViewModel by viewModels{
-        MainViewModelFactory(MainRepository(),application)
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        launchDataStore = LaunchDataStore(this.dataStore)
+        //初回起動時のみダイアログ表示
         displayDialogOnFirst(launchDataStore)
 
         tvWindSpeed = findViewById(R.id.tv_windspeed)

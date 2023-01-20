@@ -1,7 +1,6 @@
 package com.coroutinetrialapp
 
 import com.coroutinetrialapp.model.ApiInterface
-import com.coroutinetrialapp.model.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.*
 import org.junit.After

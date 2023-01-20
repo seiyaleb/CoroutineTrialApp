@@ -3,9 +3,13 @@ package com.coroutinetrialapp.ui
 import android.app.Application
 import androidx.lifecycle.*
 import com.coroutinetrialapp.model.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel (private val mainRepository: MainRepository) :ViewModel(){
+@HiltViewModel
+class MainViewModel  @Inject constructor(
+    private val mainRepository: MainRepository) :ViewModel(){
 
     private val _windspeed: MutableLiveData<String> = MutableLiveData()
     val windspeed: LiveData<String> = _windspeed
@@ -31,17 +35,6 @@ class MainViewModel (private val mainRepository: MainRepository) :ViewModel(){
             stWindSpeed += "${_timeList[i]}：${_windSpeedList[i]}km/h\n"
         }
         return stWindSpeed
-    }
-}
-
-class MainViewModelFactory(private val repository: MainRepository, application: Application) :
-    ViewModelProvider.AndroidViewModelFactory(application) {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return MainViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
 

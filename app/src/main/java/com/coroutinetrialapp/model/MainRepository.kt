@@ -2,9 +2,11 @@ package com.coroutinetrialapp.model
 
 import android.util.Log
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainRepository {
-    private val api = ApiService.generate()
+@Singleton
+class MainRepository @Inject constructor(private val api:ApiInterface){
     suspend fun fetchWindSpeed(): ApiResponse? {
         try {
             //レスポンス結果を取得
